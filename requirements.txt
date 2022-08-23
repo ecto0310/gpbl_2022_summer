@@ -1,0 +1,6 @@
+flask==1.1.2
+flask-sqlalchemy==2.5.1
+flask-script==2.0.6
+jinja2==3.0.3
+itsdangerous==2.0.1
+werkzeug==0.15.6
