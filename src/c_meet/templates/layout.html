@@ -15,17 +15,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{url_for('home.index')}}">予定</a>
+                            <a class="nav-link active" aria-current="page" href="{{url_for('home.index')}} "title="予定を作成します">予定</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{url_for('home.index')}}">グループ</a>
+                            <a class="nav-link active" href="{{url_for('home.index')}}" title="グループに行きます">グループ</a>
                         </li>
-                        <!-- TODO:右寄せにする -->
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{url_for('auth.login')}}">登録/ログイン</a>
-                        </li>
+                        
                     </ul>
-                    </ul>
+                    <buttonn type="none" class="ml-auto">
+                        <a class="nav-link active" aria-current="page" href="{{url_for('auth.login')}}" title="googleアカウントを使ってログインします">登録/ログイン</a>
+                    </button>
                 </div>
             </div>
         </nav>
