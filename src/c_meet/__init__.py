@@ -19,6 +19,8 @@ from c_meet.models.users import User  # noqa
 def load_user(user_id):
     return User.search_id(user_id)
 
+from c_meet.views.home import home  # noqa
+app.register_blueprint(home)
 
 from c_meet.views.auth import auth  # noqa
 app.register_blueprint(auth)
