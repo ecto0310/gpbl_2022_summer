@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(32))
     icon = db.Column(db.Text)
     level = db.Column(db.Integer, default=0)
+    schedules = db.relationship('Schedule')
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(
         db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())

@@ -1,0 +1,34 @@
+{% extends "layout.html" %} {% block body %}
+<div class="wrapper">
+    <div class="row mt-1">
+        <div class="col">
+            <a href="{{url_for('schedule.show_calender', date = prev ) }}" class="btn btn-primary"
+                role="button">{{prev}}</a>
+        </div>
+        <div class="col text-center">
+            <h1>{{year}}年{{month}}月</h1>
+        </div>
+        <div class="col text-right">
+            <a href="{{url_for('schedule.show_calender', date = next ) }}" class="btn btn-primary"
+                role="button">{{next}}</a>
+        </div>
+    </div>
+
+    <div id="calendar">
+
+
+        <table class="table table-bordered">
+
+            {% for num in range(1,max_day+1)%}
+            {% if num % 7 == 1 %} <tr class="DayOfWeek">
+                {% endif %}
+                <th> {{num}}</th>
+                {% if num % 7 == 0 %}
+            </tr>
+
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
