@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for, flash
+from flask import request, redirect, url_for, flash, render_template
 from flask import Blueprint
 from oauthlib.oauth2 import WebApplicationClient
 import os
@@ -21,12 +21,14 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
-    request_uri = client.prepare_request_uri(
+    login_url = client.prepare_request_uri(
         GOOGLE_AUTH_URL,
         redirect_uri=request.base_url + "/callback",
         scope=["openid", "email", "profile"],
     )
-    return redirect(request_uri)
+    if request.args.get('next'):
+        flash("ログインしてください")
+    return render_template("login.html",login_url=login_url)
 
 
 @auth.route("/login/callback")
@@ -54,11 +56,12 @@ def login_callback():
     if userinfo_response.json().get("email_verified"):
         google_id = userinfo_response.json()["sub"]
         icon = userinfo_response.json()["picture"]
+        name = userinfo_response.json()["name"]
     else:
         flash("ログインに失敗しました")
         return redirect(url_for('home.index'))
 
-    user = User(google_id=google_id, name="Guest", icon=icon)
+    user = User(google_id=google_id, name=name, icon=icon)
     if not User.search_google_id(google_id):
         User.create(user)
 
