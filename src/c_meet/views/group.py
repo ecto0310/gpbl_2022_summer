@@ -5,17 +5,17 @@ from c_meet.models.groups import Group
 
 
 group = Blueprint('group', __name__)
-users = User.query.order_by(User.id.desc()).all()
-groups = Group.query.order_by(Group.id.desc()).all()
 
 
 @group.route('/')
 @login_required
 def index():
+    groups = Group.query.order_by(Group.id.desc()).all()
     return render_template("group/index.html", groups = groups)
 
 
-@group.route('/uuid')
+@group.route('/<uuid>')
 @login_required
-def show_group():
+def show_group(uuid):
+    users = User.query.order_by(User.id.desc()).all()
     return render_template("group/show.html", users = users)
