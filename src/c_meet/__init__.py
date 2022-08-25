@@ -27,3 +27,6 @@ app.register_blueprint(auth)
 
 from c_meet.views.user import user  # noqa
 app.register_blueprint(user, url_prefix="/user")
+
+from c_meet.views.schedule import schedule  # noqa
+app.register_blueprint(schedule, url_prefix="/schedule")
