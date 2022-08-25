@@ -54,11 +54,12 @@ def login_callback():
     if userinfo_response.json().get("email_verified"):
         google_id = userinfo_response.json()["sub"]
         icon = userinfo_response.json()["picture"]
+        name = userinfo_response.json()["name"]
     else:
         flash("ログインに失敗しました")
         return redirect(url_for('home.index'))
 
-    user = User(google_id=google_id, name="Guest", icon=icon)
+    user = User(google_id=google_id, name=name, icon=icon)
     if not User.search_google_id(google_id):
         User.create(user)
 

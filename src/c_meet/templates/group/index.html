@@ -1,0 +1,72 @@
+{% extends "layout.html" %} 
+{% block body %}
+    <div class="group-list">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">日付</th>
+                    <th scope="col">共通点</th>
+                    <th scope="col">場所</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>詳細</td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>詳細</td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>詳細</td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>詳細</td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>詳細</td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>詳細</td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>詳細</td>
+                </tr>
+                {% for group in groups %}
+                    <tr>
+                        <td>{{ group.date }}</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>詳細</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        グループがありません
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock %}
