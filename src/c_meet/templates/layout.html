@@ -34,9 +34,15 @@
                 </ul>
                 <ul class="navbar-nav">
                     {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('home.index')}}"><img src="{{current_user.icon}}"
-                                height="30px" class="rounded-circle"></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="{{current_user.icon}}" height="30px" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{url_for('user.me')}}">マイプロフィール</a>
+                            <a class="dropdown-item" href="{{url_for('auth.logout')}}">ログアウト</a>
+                        </div>
                     </li>
                     {% else %}
                     <li class="nav-item">
