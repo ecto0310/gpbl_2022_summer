@@ -7,7 +7,7 @@ import datetime
 schedule = Blueprint('schedule', __name__)
 
 @schedule.route('/')
-# @login_required
+@login_required
 def show_today_calender() :
     today = datetime.date.today()
     year = today.year
@@ -15,7 +15,7 @@ def show_today_calender() :
     return redirect(url_for('schedule.show_calender', date= str(year) +"-" + str(month)))
 
 @schedule.route('/<date>')
-# @login_required
+@login_required
 def show_calender(date) :
     year, month = date.split('-')
     year = int(year)
