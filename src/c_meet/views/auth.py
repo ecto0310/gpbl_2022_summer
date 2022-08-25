@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for
+from flask import request, redirect, url_for, flash
 from flask import Blueprint
 from oauthlib.oauth2 import WebApplicationClient
 import os
@@ -55,7 +55,8 @@ def login_callback():
         google_id = userinfo_response.json()["sub"]
         icon = userinfo_response.json()["picture"]
     else:
-        return
+        flash("ログインに失敗しました")
+        return redirect(url_for('home.index'))
 
     user = User(google_id=google_id, name="Guest", icon=icon)
     if not User.search_google_id(google_id):
@@ -63,11 +64,13 @@ def login_callback():
 
     user = User.search_google_id(google_id)
     login_user(user)
-
+    
+    flash("ログインに成功しました")
     return redirect(url_for("user.me"))
 
 
 @auth.route('/logout')
 def logout():
     logout_user()
-    return "ログアウトしました"
+    flash("ログアウトしました")
+    return redirect(url_for('home.index'))
