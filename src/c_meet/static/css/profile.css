@@ -1,0 +1,41 @@
+.profile-body {
+    margin-top: 1rem;
+}
+
+.profile-body #avatar {
+    cursor: pointer;
+    max-width: 100%;
+    width: 200px;
+    vertical-align: middle;
+    height: 200px;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.profile-body #flexCheck1 {
+    margin-top: 0.5rem!important;
+}
+
+.profile-body .hobby .add_new {
+    cursor: pointer;
+}
+
+.profile-body .hobby svg {
+    margin-top: 0.2rem;
+}
+
+.profile-body #doughnutChart {
+    display: block; 
+}
+
+.profile-body .edit-button {
+    margin: auto;
+}
+
+.profile-body .edit-button button {
+    font-size: 22px;
+}
+
+.profile-body .list ul {
+    padding: 0 25px;
+}
