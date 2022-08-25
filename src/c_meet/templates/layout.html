@@ -6,6 +6,7 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel=stylesheet href="{{ url_for('static', filename='css/style.css') }}">
     <link rel=stylesheet href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel=stylesheet href="{{ url_for('static', filename='css/group.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/mplus1p.css"
         integrity="sha384-JbFr/6j+NHPTATCGJP1k33i0Og/hfzz33Vd2+3kbf3QxJzRLP1lIJNbCuDYqzU2W" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -37,7 +38,7 @@
                         <a class="nav-link" href="{{url_for('schedule.show_today_calender')}}">予定</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('home.index')}}">グループ</a>
+                        <a class="nav-link" href="{{url_for('group.index')}}">グループ</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

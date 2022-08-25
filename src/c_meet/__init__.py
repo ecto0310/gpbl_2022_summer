@@ -1,5 +1,5 @@
 from flask_login import LoginManager
-from flask import Flask
+from flask import Flask, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -19,6 +19,10 @@ from c_meet.models.users import User  # noqa
 def load_user(user_id):
     return User.search_id(user_id)
 
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/login?next=' + request.path)
+
 from c_meet.views.home import home  # noqa
 app.register_blueprint(home)
 
@@ -30,3 +34,6 @@ app.register_blueprint(user, url_prefix="/user")
 
 from c_meet.views.schedule import schedule  # noqa
 app.register_blueprint(schedule, url_prefix="/schedule")
+
+from c_meet.views.group import group
+app.register_blueprint(group, url_prefix="/group")

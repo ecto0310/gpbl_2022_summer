@@ -1,0 +1,27 @@
+.group-list {
+    margin-top: 1rem;
+}
+
+.group-list table {
+    text-align: center;
+}
+
+.group-list #user-list{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.group-list .alert {
+    margin: 5rem auto;
+}
+
+.group-list .alert-success {
+    max-width: 50%;
+    font-weight: bold;
+}
+
+.group-list .alert-primary {
+    max-width: 70%;
+}
