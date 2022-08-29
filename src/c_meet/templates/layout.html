@@ -48,7 +48,7 @@
                             aria-haspopup="true" aria-expanded="false">
                             <img src="{{current_user.icon}}" height="30px" class="rounded-circle">
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby=" navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{url_for('user.me')}}">マイプロフィール</a>
                             <a class="dropdown-item" href="{{url_for('auth.logout')}}">ログアウト</a>
                         </div>
