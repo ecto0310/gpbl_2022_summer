@@ -22,7 +22,7 @@
                 {% endif %}
             {%if (today_year == year and today_month == month) and day >= num %} 
                 <th  class ="btn-secondary" > <a class = "text-white" href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}">{{num}}</a> </th>
-            {%elif (today_year > year)  %} 
+            {%elif today_year > year  %} 
                 <th  class ="btn-secondary" > <a class = "text-white" href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}" >{{num}}</a> </th>
             {%elif (today_year == year and today_month >month)  %} 
                 <th  class ="btn-secondary" > <a class = "text-white" href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}" >{{num}}</a> </th>       

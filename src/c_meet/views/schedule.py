@@ -50,7 +50,7 @@ def show_calender(date) :
             continue
         schedule_list[int(user_schedule_date)-1] = 1  
 
-    return render_template('schedule.html',today_month  = str(today_month),today_year = str(today_year),day = int(day), year = str(year), month = str(month),max_day = max_day, now = str(year) + "-" + str(month),prev = str(prev_year) +"-" + str(prev_month), next = str(next_year) +"-" + str(next_month) ,schedule_list = schedule_list)
+    return render_template('schedule.html',today_month  = int(today_month),today_year = str(today_year),day = int(day), year = str(year), month = int(month),max_day = max_day, now = str(year) + "-" + str(month),prev = str(prev_year) +"-" + str(prev_month), next = str(next_year) +"-" + str(next_month) ,schedule_list = schedule_list)
 
 @schedule.route('/<year_month>/<day>')
 @login_required
