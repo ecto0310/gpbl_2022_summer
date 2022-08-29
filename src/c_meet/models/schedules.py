@@ -22,7 +22,7 @@ class Schedule(db.Model):
     @staticmethod
     def delete(schedule):
         db.session.query(Schedule).\
-            filter(Schedule.date== schedule.date).\
+            filter(Schedule.date== schedule.date, Schedule.user_id == schedule.user_id).\
             delete()
         db.session.commit()
         return
