@@ -66,7 +66,7 @@ def user_schedule(year_month ,day) :
     today_month = int(today_month)
     today_day = int(today_day)
     day = int(day)
-    if ( year == today_year and month == today_month ) and today_day >day :
+    if ( year == today_year and month == today_month ) and today_day >=day :
         flash('その日程は入力できません')
         return redirect(url_for('schedule.show_calender',date = year_month))
     if  year < today_year :
