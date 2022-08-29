@@ -22,8 +22,10 @@
                 {% endif %}
             {%if (today_year == year and today_month == month) and day >= num %} 
                 <th  class ="btn-secondary" > <a class = "text-white" href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}">{{num}}</a> </th>
-            {%elif (today_year > year or today_month > month)  %} 
-                <th  class ="btn-secondary" > <a class = "text-white" href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}" >{{num}}</a> </th>    
+            {%elif (today_year > year)  %} 
+                <th  class ="btn-secondary" > <a class = "text-white" href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}" >{{num}}</a> </th>
+            {%elif (today_year == year and today_month >month)  %} 
+                <th  class ="btn-secondary" > <a class = "text-white" href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}" >{{num}}</a> </th>       
             {% elif schedule_list[num-1] == 1%} 
                 <th  class ="btn-success" > <a class = "text-white" href="{{url_for('schedule.delete_user_schedule',month = now,date =  num)}}">{{num}}</a> </th>
             {% else %}     

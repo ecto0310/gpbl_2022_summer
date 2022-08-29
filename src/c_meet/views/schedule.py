@@ -69,9 +69,12 @@ def user_schedule(year_month ,day) :
     if ( year == today_year and month == today_month ) and today_day >day :
         flash('その日程は入力できません')
         return redirect(url_for('schedule.show_calender',date = year_month))
-    if  year < today_year or month < today_month  :
+    if  year < today_year :
         flash('その日程は入力できません','error')
-        return redirect(url_for('schedule.show_calender',date = year_month))    
+        return redirect(url_for('schedule.show_calender',date = year_month))
+    if  year == today_year and month < today_month  :
+        flash('その日程は入力できません','error')
+        return redirect(url_for('schedule.show_calender',date = year_month))          
     schedule = Schedule(user_id = current_user.id ,date = str(year_month) + "-" + str(day)) 
     Schedule.create(schedule)
     flash("予定を入力しました")
