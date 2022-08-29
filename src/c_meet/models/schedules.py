@@ -13,4 +13,19 @@ class Schedule(db.Model):
         db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
     __table_args__ =(db.UniqueConstraint('user_id','date',name = 'uk_user_id_date'),)
 
+    @staticmethod
+    def create(schedule):
+        db.session.add(schedule)
+        db.session.commit()
+        return
+
+    @staticmethod
+    def delete(schedule):
+        db.session.query(Schedule).\
+            filter(Schedule.date== schedule.date).\
+            delete()
+        db.session.commit()
+        return
+
+
 
