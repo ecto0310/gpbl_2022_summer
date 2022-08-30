@@ -13,7 +13,7 @@ class Hobby(db.Model):
     groups = db.relationship('Group', backref='hobbies', lazy=True)
 
     def __init__(self, type=None):
-        self.text = type
+        self.type = type
         self.created_at = db.func.now()
         self.updated_at = db.func.now()
 
