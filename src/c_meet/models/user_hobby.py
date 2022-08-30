@@ -17,3 +17,9 @@ class User_Hobby(db.Model):
 
     def __repr__(self):
         return
+
+    @staticmethod
+    def create(user_hobby):
+        db.session.add(user_hobby)
+        db.session.commit()
+        return
