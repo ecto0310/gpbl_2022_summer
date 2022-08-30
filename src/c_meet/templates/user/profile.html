@@ -72,15 +72,21 @@
                         </div>
                         <div class="col-md-4">
                             <div class="list">
+                                <input id="user_achievements" value="{{ user_achievements|length }}" class="d-none">
                                 <h5>達成済み</h5>
                                 <ul >
-                                    <li>～～～</li>
+                                    {% for achievement in user_achievements %}
+                                        <li>{{ achievement.name }}</li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div class="list">
+                                <input id="other_achievements" value="{{ other_achievements|length }}" class="d-none">
                                 <h5>未達成</h5>
                                 <ul>
-                                    <li>～～～</li>
+                                    {% for achievement in other_achievements %}
+                                        <li>{{ achievement.name }}</li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
