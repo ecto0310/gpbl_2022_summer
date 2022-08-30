@@ -1,4 +1,4 @@
-from flask_script import Command
+from flask_script import Command, Option
 from c_meet import db
 from c_meet.models.group_user import Group_User
 from c_meet.models.schedules import Schedule
@@ -38,9 +38,11 @@ class DemoDB(Command):
         
 class CreateGroup(Command):
 
-    def run(self):
-        today = datetime.date.today()
-        user_id_list = Schedule.query.filter(Schedule.date == today).all()
+    option_list = (
+        Option('-d', '--date',  dest='date', required=True),
+    )
+    def run(self,date):
+        user_id_list = Schedule.query.filter(Schedule.date == date).all()
         users = []
         hobby_user = {}
         for h in Hobby.query.all():
@@ -71,7 +73,7 @@ class CreateGroup(Command):
             if len(group_users) < 3:
                 hobby_user.pop(key)
                 continue
-            group = Group(date = today, place = "不明",hobby_id = key)
+            group = Group(date = date, place = "不明",hobby_id = key)
             Group.create(group)
             for user in group_users:
                 group_user = Group_User(user_id = user, group_id = group.id)
