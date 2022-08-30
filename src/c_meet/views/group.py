@@ -26,5 +26,10 @@ def index():
 @group.route('/<uuid>')
 @login_required
 def show_group(uuid):
-    users = User.query.order_by(User.id.desc()).all()
-    return render_template("group/show.html", users = users)
+    group = Group.query.filter(Group.id == uuid).first()
+    group_view = {}
+    group_view["date"]= group.date.date()
+    group_view["hobby"]= Hobby.query.filter(Hobby.id == group.hobby_id).first().type
+    group_view["place"]= group.place
+    users = User.query.join(Group_User).filter(Group_User.group_id == uuid).all()
+    return render_template("group/show.html", users = users,group = group_view)
