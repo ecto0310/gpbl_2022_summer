@@ -11,54 +11,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><a href="{{url_for('group.show_group', uuid = 'da4e14ae-2451-11ed-861d-0242ac120002')}}">詳細</a></td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><a href="{{url_for('group.show_group', uuid = 'da4e14ae-2451-11ed-861d-0242ac120002')}}">詳細</a></td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><a href="{{url_for('group.show_group', uuid = 'da4e14ae-2451-11ed-861d-0242ac120002')}}">詳細</a></td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><a href="{{url_for('group.show_group', uuid = 'da4e14ae-2451-11ed-861d-0242ac120002')}}">詳細</a></td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><a href="{{url_for('group.show_group', uuid = 'da4e14ae-2451-11ed-861d-0242ac120002')}}">詳細</a></td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><a href="{{url_for('group.show_group', uuid = 'da4e14ae-2451-11ed-861d-0242ac120002')}}">詳細</a></td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><a href="{{url_for('group.show_group', uuid = 'da4e14ae-2451-11ed-861d-0242ac120002')}}">詳細</a></td>
-            </tr>
             {% for group in groups %}
             <tr>
                 <td>{{ group.date }}</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><a href="{{url_for('group.show_group', uuid = 'da4e14ae-2451-11ed-861d-0242ac120002')}}">詳細</a></td>
+                <td>{{ group.hobby }}</td>
+                <td>{{ group.place }}</td>
+                <td><a href="{{url_for('group.show_group', uuid = group.id)}}">詳細</a></td>
             </tr>
             {% else %}
             <tr>
