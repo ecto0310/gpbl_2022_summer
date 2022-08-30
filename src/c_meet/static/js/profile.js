@@ -31,6 +31,24 @@ $(document).ready(function() {
         readURL(this);
     });
 
+    $('#update_button').click(function(){
+        $('#user_form').submit();
+    });
+     
+     
+    $('#delete_hobby').click(function(){
+        $('#hobby_form').attr('action', '/user/me/delete_hobby');
+        $('#hobby_form').submit()
+    });
+
+    $('.add_new').click(function(e) {
+        if ($('#hobby').val()) {
+            $('#hobby_form').submit()
+        } else {
+            alert('趣味を選択してください。')
+        }
+    })
+
     //doughnut chart
     var ctxD = $("#doughnutChart");
     var myLineChart = new Chart(ctxD, {
