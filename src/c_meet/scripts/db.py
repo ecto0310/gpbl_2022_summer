@@ -17,6 +17,25 @@ class InitDB(Command):
     def run(self):
         db.create_all()
 
+class DemoDB(Command):
+    "Insert Demo Data"
+
+    def run(self):
+        for i in range(500):
+            user = User(google_id=str(i), name="Demo"+str(i), icon="https://www.google.com/favicon.ico")
+            User.create(user)
+        hobbies = ["読書","野球","食事","ゴルフ","ランニング","ゲーム","プログラミング","映画鑑賞","電車","音楽鑑賞"]
+        for hobby_name in hobbies:
+            hobby = Hobby(type=hobby_name)
+            Hobby.create(hobby)
+        users = User.query.all()
+        for user in users:
+            for h in Hobby.query.order_by(func.rand()).limit(random.randint(1,4)).all():
+                user_hobby = User_Hobby(user_id = user.id,hobby_id = h.id)
+                User_Hobby.create(user_hobby)     
+            schedule = Schedule(user_id=user.id, date=datetime.date.today()) 
+            Schedule.create(schedule)
+        
 class CreateGroup(Command):
 
     def run(self):
