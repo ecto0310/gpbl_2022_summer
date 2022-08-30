@@ -5,16 +5,22 @@
             <form id="user_form" action="{{ url_for('user.update_user') }}" class="row col-md-12" method="POST">
                 <div class="col-md-6">
                     <div class="text-center">
-                        <img id="avatar" src="{{ current_user.icon }}" class="avatar rounded-circle img-thumbnail" alt="avatar">
+                        <img id="avatar" src="{{ user.icon }}" class="avatar rounded-circle img-thumbnail" alt="avatar">
                         <h6>Upload a different photo...</h6>
-                        <input type="text" id="image" name=icon style="display:none;" value="{{ current_user.icon }}"></p>
-                        <input id="my_file" type="file" class="d-none" />
+                        {% if user.id == current_user.id %} 
+                            <input type="text" id="image" name=icon style="display:none;" value="{{ user.icon }}"></p>
+                            <input id="my_file" type="file" class="d-none" />
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile">
-                        <h4 class="text-uppercase fw-weight-bold mb-2">レベル {{ current_user.level }}</h4>
-                        <input type="text" name=name class="form-control" value="{{ current_user.name }}">
+                        <h4 class="text-uppercase fw-weight-bold mb-2">レベル {{ user.level }}</h4>
+                        {% if user.id == current_user.id %} 
+                            <input type="text" name=name class="form-control" value="{{ user.name }}">
+                        {% else %} 
+                            <span>{{ user.name }}</span>
+                        {% endif %}
                     </div>
                 </div>
             </form>
@@ -34,13 +40,16 @@
                             </div>
                             <form id="hobby_form" action="{{ url_for('user.add_hobby') }}" method="POST">
                             {% for hobby in user_hobbies %}
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" name="hobby_checkBox" id="flexCheck1_{{ hobby.id }}" type="checkbox" value="{{ hobby.id }}">
-                                    <label class="form-check-label" for="flexCheck1_{{ hobby.id }}"><span class="fst-italic pl-1">{{ hobby.type }}</span></label>
+                                <div class="form-check mt-3 mb-2 hobby_list">
+                                    {% if user.id == current_user.id %} 
+                                        <input class="form-check-input" name="hobby_checkBox" id="flexCheck1_{{ hobby.id }}" type="checkbox" value="{{ hobby.id }}">
+                                    {% endif %}
+                                        <label class="form-check-label" for="flexCheck1_{{ hobby.id }}"><span class="fst-italic pl-1">{{ hobby.type }}</span></label>
                                 </div>
                             {% else %}
-                                <span class="mb-3">趣味がありません。</span>
+                                <span class="mt-3">趣味がありません。</span>
                             {% endfor %}
+                            {% if user.id == current_user.id %} 
                                 <div class="mt-4 d-flex">
                                     <div class="add_new align-middle">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -55,10 +64,13 @@
                                     </select>
                                 </div>
                                 <button id="delete_hobby" type="button" class="mt-2 float-right btn btn-danger">チェックがついている項目を削除</button>
+                            {% endif %}
                             </form>
                         </div>
                         <div class="col-md-4 text-center edit-button">
-                            <button id="update_button" type="submit" class="btn btn-primary">更新</button>
+                            {% if user.id == current_user.id %} 
+                                <button id="update_button" type="submit" class="btn btn-primary">更新</button>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="card-body p-5 row">

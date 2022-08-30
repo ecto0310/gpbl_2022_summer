@@ -66,3 +66,27 @@ def delete_hobby():
 
     flash('趣味が削除されました')
     return redirect(url_for('user.me'))
+
+
+@user.route('/<string:id>')
+@login_required
+def user_profile(id):
+    if (id == current_user.id):
+        return redirect(url_for('user.me'))
+    user = User.query.get(id)
+
+    user_hobbies = Hobby.query.join(User_Hobby, Hobby.id == User_Hobby.hobby_id).filter(User_Hobby.user_id == user.id).all()
+    hobbies = Hobby.query.order_by(Hobby.id.desc()).all()
+    user_achievements = Achievement.query.join(User_Achievement, Achievement.id == User_Achievement.achievement_id).filter(User_Achievement.user_id == user.id).all()
+    achievement_id = []
+    for user_achievement in user_achievements:
+        achievement_id.append(user_achievement.id)
+    other_achievements = Achievement.query.filter(Achievement.id.notin_(achievement_id)).all()
+
+    return render_template('user/profile.html', 
+        user=user, 
+        hobbies = hobbies, 
+        user_hobbies = user_hobbies, 
+        user_achievements = user_achievements,
+        other_achievements = other_achievements
+    ) 
