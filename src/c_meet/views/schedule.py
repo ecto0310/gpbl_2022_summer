@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for,flash
 from c_meet.models.schedules import Schedule
+from c_meet.models.groups import Group
+from c_meet.models.group_user import Group_User
 from flask_login import (current_user, login_required)
 import datetime
 
@@ -43,14 +45,26 @@ def show_calender(date) :
             max_day = max_day + 1
 
     schedule_list = [0] *31
+
     for user_schedule in current_user.schedules:
         user_schedule.date = str(user_schedule.date)
         user_schedule_year ,user_schedule_month , user_schedule_date = user_schedule.date.split('-')
         if int(user_schedule_year) != year or int (user_schedule_month) != month:
             continue
-        schedule_list[int(user_schedule_date)-1] = 1  
+        schedule_list[int(user_schedule_date)-1] = 1
 
-    return render_template('schedule.html',today = str(today_year) + "-" + str(today_month),today_month  = int(today_month),today_year = str(today_year),day = int(day), year = str(year), month = int(month),max_day = max_day, now = str(year) + "-" + str(month),prev = str(prev_year) +"-" + str(prev_month), next = str(next_year) +"-" + str(next_month) ,schedule_list = schedule_list)
+    groups = Group.query.filter(Group_User.user_id == current_user.id).join(Group_User).all()
+    group_list = [0]*31
+    for group_user_schedule in groups:
+        group_user_schedule.date = str(group_user_schedule.date)
+        group_user_schedule_year, group_user_schedule_month,group_user_schedule_date = group_user_schedule.date.split('-') 
+        group_user_schedule_date,group_user_schedule_time = group_user_schedule_date.split(' ')
+        if int (group_user_schedule_year) != year or int (group_user_schedule_month) != month:
+            continue
+        schedule_list[int(group_user_schedule_date)-1] = 2
+        group_list[int(group_user_schedule_date)-1]  = group_user_schedule.id      
+    
+    return render_template('schedule.html',today = str(today_year) + "-" + str(today_month),today_month  = int(today_month),today_year = str(today_year),day = int(day), year = str(year), month = int(month),max_day = max_day, now = str(year) + "-" + str(month),prev = str(prev_year) +"-" + str(prev_month), next = str(next_year) +"-" + str(next_month) ,schedule_list = schedule_list,group_list = group_list)
 
 @schedule.route('/<year_month>/<day>')
 @login_required
