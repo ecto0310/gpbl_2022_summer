@@ -45,6 +45,22 @@ def show_calender(date) :
             max_day = max_day + 1
 
     schedule_list = [0] *31
+    static_day_list = ["日","月","火","水","木","金","土"]
+    day_list = [" "]*7
+    dt = datetime.date(year,month,1)
+    i = dt.weekday()
+    first_date = max_day_list[prev_month-1] -i
+    if i == 6 :
+        first_date = 0
+    first_date_Sat  =first_date + 7
+    first_date_mon = first_date + 7
+    if first_date_mon == 7 :
+        first_date_mon = 1
+    if first_date_mon > 30 :
+        first_date_mon = first_date_mon - max_day_list[prev_month-1]    
+    first_date_mon = first_date_mon % 7    
+    if first_date_Sat > 30:
+        first_date_Sat = first_date_Sat-max_day_list[prev_month-1] -1
 
     for user_schedule in current_user.schedules:
         user_schedule.date = str(user_schedule.date)
@@ -64,7 +80,7 @@ def show_calender(date) :
         schedule_list[int(group_user_schedule_date)-1] = 2
         group_list[int(group_user_schedule_date)-1]  = group_user_schedule.id      
     
-    return render_template('schedule.html',today = str(today_year) + "-" + str(today_month),today_month  = int(today_month),today_year = str(today_year),day = int(day), year = str(year), month = int(month),max_day = max_day, now = str(year) + "-" + str(month),prev = str(prev_year) +"-" + str(prev_month), next = str(next_year) +"-" + str(next_month) ,schedule_list = schedule_list,group_list = group_list)
+    return render_template('schedule.html',first_date_mon = first_date_mon,first_date_Sat = first_date_Sat,first_date = first_date,today = str(today_year) + "-" + str(today_month),today_month  = int(today_month),today_year = str(today_year),day = int(day), year = str(year), month = int(month),prev_max_day = max_day_list[prev_month-1],max_day = max_day, now = str(year) + "-" + str(month),prev = str(prev_year) +"-" + str(prev_month), next = str(next_year) +"-" + str(next_month) ,schedule_list = schedule_list,group_list = group_list,day_list = static_day_list)
 
 @schedule.route('/<year_month>/<day>')
 @login_required
