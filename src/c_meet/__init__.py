@@ -37,3 +37,6 @@ app.register_blueprint(schedule, url_prefix="/schedule")
 
 from c_meet.views.group import group
 app.register_blueprint(group, url_prefix="/group")
+
+from c_meet.views.hobby import hobby
+app.register_blueprint(hobby, url_prefix="/hobbies")

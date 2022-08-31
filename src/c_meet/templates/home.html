@@ -1,7 +1,7 @@
 {% extends "layout.html" %} {% block body %}
 <img class="d-block mx-auto mt-5" src="/static/icon.svg">
-<form class="input-group mt-5">
-    <input type="text" id="txt-search" class="form-control input-group-prepend" placeholder="趣味を入力"></input>
+<form action="{{ url_for('hobby.search') }}" class="input-group mt-5">
+    <input type="text" id="txt-search" name="hobby" class="form-control input-group-prepend" placeholder="趣味を入力"></input>
     <span class="input-group-btn input-group-append">
         <button type="submit" class="btn btn-primary">検索</button>
     </span>
