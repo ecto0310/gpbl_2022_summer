@@ -4,3 +4,9 @@
     border: 0;
     font-size: 100%;
 }
+
+.user-icon {
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+}
