@@ -1,4 +1,7 @@
 {% extends "layout.html" %}
+{% block header %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock%}
 {% block body %}
 <div class="group-list">
     <table class="table table-bordered">
