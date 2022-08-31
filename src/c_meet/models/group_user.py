@@ -10,6 +10,7 @@ class Group_User(db.Model):
         uuid.uuid4()), primary_key=True)
     user_id = db.Column(db.String(64), db.ForeignKey('users.id'))
     group_id = db.Column(db.String(64), db.ForeignKey('groups.id'))
+    completed = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(
         db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
@@ -22,4 +23,10 @@ class Group_User(db.Model):
     @staticmethod
     def create(group_user):
         db.session.add(group_user)
+        db.session.commit()
+    
+    
+    @staticmethod
+    def update(group_user):
+        db.session.merge(group_user)
         db.session.commit()
