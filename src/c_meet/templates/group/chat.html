@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="group-list">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">日付</th>
+                <th scope="col">共通点</th>
+                <th scope="col">場所</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{group.date}}</td>
+                <td>{{group.hobby}}</td>
+                <td>{{group.place}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="chat bg-light p-4">
+        {% for chat_log in chat_logs %}
+        {% if chat_log.me %}
+        <div class="message d-flex flex-row-reverse align-items-start mb-4">
+            <div class="message-icon rounded-circle bg-secondary text-white fs-3">
+                <img src="{{chat_log.user_icon}}" height="40px" class="user-icon rounded-circle">
+                <!-- {{chat_log.user_name}} -->
+            </div>
+            <p class="message-text p-2 me-2 mb-0 bg-success">
+                {{ chat_log.content }}<br />
+                {{ chat_log.date }}
+            </p>
+        </div>
+        {% else %}
+        <div class="message d-flex flex-row align-items-start mb-4">
+            <div class="message-icon rounded-circle bg-secondary text-white fs-3">
+                <img src="{{chat_log.user_icon}}" height="40px" class="user-icon rounded-circle">
+                <!-- {{chat_log.user_name}} -->
+            </div>
+            <p class="message-text p-2 ms-2 mb-0 bg-info">
+                {{ chat_log.content }}<br />
+                {{ chat_log.date }}
+            </p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
