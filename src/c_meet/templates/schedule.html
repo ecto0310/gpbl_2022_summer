@@ -24,7 +24,13 @@
             {% for num in range(1,max_day+1)%}
             {% if num % 7 == 1 %} <tr class="DayOfWeek">
                 {% endif %}
-                {%if (today_year == year and today_month == month) and day >= num %}
+                {% if (today_year == year and today_month == month) and schedule_list[num-1] == 2%}
+                <div class="position-relative">
+                    <th class="btn-info "> <a class="text-white d-lg-block"
+                            href="{{url_for('group.show_group',uuid = group_list[num-1])}}">{{num}}</a>
+                    </th>
+                </div>
+                {%elif (today_year == year and today_month == month) and day >= num %}
                 <div class="position-relative">
                     <th class="btn-secondary "> <a class="text-white  d-lg-block"
                             href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}">{{num}}</a> </th>
@@ -44,12 +50,7 @@
                             href="{{url_for('schedule.delete_user_schedule',month = now,date =  num)}}">{{num}}</a>
                     </th>
                 </div>
-                {% elif schedule_list[num-1] == 2%}
-                <div class="position-relative">
-                    <th class="btn-info "> <a class="text-white d-lg-block"
-                            href="{{url_for('group.show_group',uuid = group_list[num-1])}}">{{num}}</a>
-                    </th>
-                </div>
+                {
                 {% else %}
                 <th><a class="text-dark d-lg-block "
                         href="{{url_for('schedule.user_schedule',year_month = now,day =  num)}}">
