@@ -18,3 +18,8 @@ class Group_User(db.Model):
 
     def __repr__(self):
         return
+
+    @staticmethod
+    def create(group_user):
+        db.session.add(group_user)
+        db.session.commit()

@@ -2,6 +2,7 @@ from c_meet import db, User
 from c_meet.models.hobbies import Hobby
 import uuid
 from sqlalchemy.orm import relationship, backref
+from flask_login import current_user
 
 class User_Hobby(db.Model):
     __tablename__ = 'user_hobby'
@@ -15,5 +16,21 @@ class User_Hobby(db.Model):
     user = relationship(User, backref=backref("user_hobby", cascade="all, delete-orphan"))
     hobby = relationship(Hobby, backref=backref("user_hobby", cascade="all, delete-orphan"))
 
+    @staticmethod
+    def create(user_hobby):
+        db.session.add(user_hobby)
+        db.session.commit()
+
+
+    def delete(ids):
+        User_Hobby.query.filter(User_Hobby.user_id == current_user.id).filter(User_Hobby.hobby_id.in_(ids)).delete()
+        db.session.commit()
+
     def __repr__(self):
+        return
+
+    @staticmethod
+    def create(user_hobby):
+        db.session.add(user_hobby)
+        db.session.commit()
         return
