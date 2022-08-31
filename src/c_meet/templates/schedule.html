@@ -24,7 +24,7 @@
             {% for num in range(1,max_day+1)%}
             {% if num % 7 == 1 %} <tr class="DayOfWeek">
                 {% endif %}
-                {% if (today_year == year and today_month == month) and schedule_list[num-1] == 2%}
+                {% if schedule_list[num-1] == 2%}
                 <div class="position-relative">
                     <th class="btn-info "> <a class="text-white d-lg-block"
                             href="{{url_for('group.show_group',uuid = group_list[num-1])}}">{{num}}</a>
