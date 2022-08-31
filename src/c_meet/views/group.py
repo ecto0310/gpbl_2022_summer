@@ -1,5 +1,6 @@
+from crypt import methods
 from operator import truediv
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import (current_user, login_required)
 from c_meet.models.group_chat import Group_Chat
 from c_meet.models.group_user import Group_User
@@ -70,3 +71,14 @@ def show_chat(uuid):
         chat["date"] = log.created_at
         chat_logs.append(chat)
     return render_template("group/chat.html", group = group_view,  chat_logs = chat_logs )
+
+@group.route('/<uuid>/post_chat', methods=["POST"])
+@login_required
+def post_chat(uuid):
+    content = request.form.get('content')
+    print("aaaa",content)
+    if content == None:
+        return redirect(url_for('group.show_chat', uuid = uuid))
+    group_chat = Group_Chat(user_id = current_user.id, group_id = uuid, content = content)
+    Group_Chat.create(group_chat)
+    return redirect(url_for('group.show_chat', uuid = uuid))

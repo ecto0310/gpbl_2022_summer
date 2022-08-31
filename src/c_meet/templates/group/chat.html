@@ -17,32 +17,24 @@
             </tr>
         </tbody>
     </table>
-
-    <div class="chat bg-light p-4">
+    <form class="input-group" method="POST" action="./post_chat">
+        <input type="text" id="content" name="content" class="form-control input-group-prepend"
+            placeholder="チャットを入力"></input>
+        <span class="input-group-btn input-group-append">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </span>
+    </form>
+    <div id="chat_log" class="bg-light">
         {% for chat_log in chat_logs %}
-        {% if chat_log.me %}
-        <div class="message d-flex flex-row-reverse align-items-start mb-4">
-            <div class="message-icon rounded-circle bg-secondary text-white fs-3">
-                <img src="{{chat_log.user_icon}}" height="40px" class="user-icon rounded-circle">
-                <!-- {{chat_log.user_name}} -->
+        <div class="m-4">
+            <img src="{{chat_log.user_icon}}" height="40px" class="user-icon rounded-circle">
+            {{chat_log.user_name}}
+            {{ chat_log.date }}
+            <div class="{% if chat_log.me %}bg-success{% else %}bg-info{% endif %} w-100 p-1"
+                style="word-break: break-all;">
+                {{ chat_log.content }}
             </div>
-            <p class="message-text p-2 me-2 mb-0 bg-success">
-                {{ chat_log.content }}<br />
-                {{ chat_log.date }}
-            </p>
         </div>
-        {% else %}
-        <div class="message d-flex flex-row align-items-start mb-4">
-            <div class="message-icon rounded-circle bg-secondary text-white fs-3">
-                <img src="{{chat_log.user_icon}}" height="40px" class="user-icon rounded-circle">
-                <!-- {{chat_log.user_name}} -->
-            </div>
-            <p class="message-text p-2 ms-2 mb-0 bg-info">
-                {{ chat_log.content }}<br />
-                {{ chat_log.date }}
-            </p>
-        </div>
-        {% endif %}
         {% endfor %}
     </div>
 </div>
