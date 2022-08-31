@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block header %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock%}
+{% block body %}
+<div class="group-list">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">日付</th>
+                <th scope="col">共通点</th>
+                <th scope="col">場所</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{group.date}}</td>
+                <td>{{group.hobby}}</td>
+                <td>{{group.place}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form class="input-group" method="POST" action="./post_chat">
+        <input type="text" id="content" name="content" class="form-control input-group-prepend"
+            placeholder="チャットを入力"></input>
+        <span class="input-group-btn input-group-append">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </span>
+    </form>
+    <div id="chat_log" class="bg-light">
+        {% for chat_log in chat_logs %}
+        <div class="m-4">
+            <img src="{{chat_log.user_icon}}" height="40px" class="user-icon rounded-circle">
+            {{chat_log.user_name}}
+            {{ chat_log.date }}
+            <div class="{% if chat_log.me %}bg-success{% else %}bg-info{% endif %} w-100 p-1"
+                style="word-break: break-all;">
+                {{ chat_log.content }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

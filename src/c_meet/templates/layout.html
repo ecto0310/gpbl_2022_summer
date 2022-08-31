@@ -9,9 +9,7 @@
     <link rel=stylesheet href="{{ url_for('static', filename='css/group.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/mplus1p.css"
         integrity="sha384-JbFr/6j+NHPTATCGJP1k33i0Og/hfzz33Vd2+3kbf3QxJzRLP1lIJNbCuDYqzU2W" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
@@ -22,6 +20,7 @@
         integrity="sha384-auoxdk5/6E/nKcumf/ddnxWK8/SgTaZ7lgR1DpAq8woDZudto1lSmH15YNf/Jms6"
         crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    {% block header %}{% endblock %}
 </head>
 
 <body>
