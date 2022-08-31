@@ -59,7 +59,7 @@ def show_chat(uuid):
     group_view["hobby"]= Hobby.query.filter(Hobby.id == group.hobby_id).first().type
     group_view["place"]= group.place
     chat_logs = []
-    logs = Group_Chat.query.filter(Group_Chat.group_id == group.id).all()
+    logs = Group_Chat.query.filter(Group_Chat.group_id == group.id).order_by(Group_Chat.created_at.desc()).all()
     for log in logs:
         chat = {}
         user = User.search_id(log.user_id)
