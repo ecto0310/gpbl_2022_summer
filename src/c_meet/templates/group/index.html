@@ -6,7 +6,6 @@
             <tr>
                 <th scope="col">日付</th>
                 <th scope="col">共通点</th>
-                <th scope="col">場所</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -15,7 +14,6 @@
             <tr class="{% if group.completed %}bg-secondary{% endif%}">
                 <td>{{ group.date }}</td>
                 <td>{{ group.hobby }}</td>
-                <td>{{ group.place }}</td>
                 <td><a href="{{url_for('group.show_group', uuid = group.id)}}">詳細</a></td>
             </tr>
             {% else %}
