@@ -36,9 +36,13 @@
                     チャットを開く
                 </div>
             </a>
-            <div class="alert alert-success text-center mt-3" role="alert">
-                話せた！
-            </div>
+            {% if not group.completed %}
+            <a href="{{url_for('group.complete_group',uuid = group.uuid)}}" class="alert-link">
+                <div class="alert alert-success text-center mt-3" role="alert">
+                    話せた！
+                </div>
+            </a>
+            {% endif%}
         </div>
     </div>
 </div>

@@ -24,3 +24,9 @@ class Group_User(db.Model):
     def create(group_user):
         db.session.add(group_user)
         db.session.commit()
+    
+    
+    @staticmethod
+    def update(group_user):
+        db.session.merge(group_user)
+        db.session.commit()
