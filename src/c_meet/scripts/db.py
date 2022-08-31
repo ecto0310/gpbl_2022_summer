@@ -1,5 +1,6 @@
 from flask_script import Command, Option
 from c_meet import db
+from c_meet.models.achievements import Achievement
 from c_meet.models.group_user import Group_User
 from c_meet.models.schedules import Schedule
 from c_meet.models.user_hobby import User_Hobby
@@ -7,7 +8,7 @@ from c_meet.models.users import User
 from c_meet.models.hobbies import Hobby
 from c_meet.models.groups import Group
 from  sqlalchemy.sql.expression import func
-import datetime
+from datetime import datetime, timedelta
 import random
 
 
@@ -33,8 +34,22 @@ class DemoDB(Command):
             for h in Hobby.query.order_by(func.rand()).limit(random.randint(1,4)).all():
                 user_hobby = User_Hobby(user_id = user.id,hobby_id = h.id)
                 User_Hobby.create(user_hobby)     
-            schedule = Schedule(user_id=user.id, date=datetime.date.today()) 
+            today = datetime.now()
+            tomorrow = today + timedelta(1)
+            schedule = Schedule(user_id=user.id, date=today.strftime('%Y-%m-%d')) 
             Schedule.create(schedule)
+            schedule = Schedule(user_id=user.id, date=tomorrow.strftime('%Y-%m-%d'))
+            Schedule.create(schedule) 
+        achievement = Achievement(name = "初めて人と会う")
+        Achievement.create(achievement)
+        achievement = Achievement(name = "10人と出会う")
+        Achievement.create(achievement)
+        achievement = Achievement(name = "30人と出会う")
+        Achievement.create(achievement)
+        achievement = Achievement(name = "同じ人と2回以上と会う")
+        Achievement.create(achievement)
+        achievement = Achievement(name = "同じ人と3回以上と会う")
+        Achievement.create(achievement)
         
 class CreateGroup(Command):
 
