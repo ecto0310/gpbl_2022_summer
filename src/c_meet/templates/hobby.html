@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="group-list">
+    {% if hobbies %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">名前</th>
+                <th scope="col">人数</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            {% for hobby in hobbies|sort(attribute='amount', reverse=True) %}
+            <tr>
+                <td>{{ hobby.type }}</td>
+                <td>{{ hobby.amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <span class="mb-3"><span style="color:red;">{{ hobby }}</span>がありません</span>
+        <br>
+        <form action="{{ url_for('hobby.add_hobby') }}" method="POST">
+            <input type="text" name="hobby" id="hobby_type" class="d-none">
+            <button id="add_button" type="submit" class="btn btn-primary mt-3">{{ hobby }}の趣味を追加</button>
+        </form>
+    {% endif %}
+</div>
+<script>
+    $(document).ready(function() {
+        search = window.location.search.split("=");
+        $('#hobby_type').val(decodeURI(search[1]));
+    })
+</script>
+{% endblock %}
