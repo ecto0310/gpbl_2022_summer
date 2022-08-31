@@ -23,7 +23,8 @@
             <div id="user-list" class="list-group">
 
                 {% for user in users %}
-                <a class="list-group-item list-group-item-action" href="{{url_for('user.me')}}">{{ user.name }}</a>
+                <a class="list-group-item list-group-item-action"
+                    href="{{url_for('user.user_profile', id = user.id)}}">{{user.name }}</a>
                 {% else %}
                 ユーザがありません
                 {% endfor %}
