@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             {% for group in groups %}
-            <tr>
+            <tr class="{% if group.completed %}bg-secondary{% endif%}">
                 <td>{{ group.date }}</td>
                 <td>{{ group.hobby }}</td>
                 <td>{{ group.place }}</td>

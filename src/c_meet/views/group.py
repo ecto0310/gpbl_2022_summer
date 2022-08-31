@@ -19,6 +19,7 @@ def index():
         view["id"]= group.id
         view["date"]= group.date.date()
         view["hobby"]= Hobby.query.filter(Hobby.id == group.hobby_id).first().type
+        view["completed"]= Group_User.query.filter(Group_User.user_id == current_user.id, Group_User.group_id == group.id).first().completed
         view["place"]= group.place
         view_groups.append(view)
     return render_template("group/index.html", groups = view_groups)
