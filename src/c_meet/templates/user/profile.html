@@ -19,7 +19,7 @@
                         {% if user.id == current_user.id %}
                             <input type="text" name=name class="form-control" value="{{ user.name }}">
                         {% else %}
-                            <span>{{ user.name }}</span>
+                           <h3> <span>{{ user.name }}</span></h3>
                         {% endif %}
                     </div>
                 </div>
