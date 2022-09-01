@@ -77,7 +77,7 @@ def show_chat(uuid):
 def post_chat(uuid):
     content = request.form.get('content')
     print("aaaa",content)
-    if content == None:
+    if content == None or content == "":
         return redirect(url_for('group.show_chat', uuid = uuid))
     group_chat = Group_Chat(user_id = current_user.id, group_id = uuid, content = content)
     Group_Chat.create(group_chat)
