@@ -1,29 +1,29 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="profile-body">
-    <div class="row mt-3">
-        <form id="user_form" action="{{ url_for('user.update_user') }}" class="row col-md-12" method="POST">
-            <div class="col-md-6">
-                <div class="text-center">
-                    <img id="avatar" src="{{ user.icon }}" class="avatar rounded-circle img-thumbnail" alt="avatar">
-                    {% if user.id == current_user.id %}
-                    <h6>Upload a different photo...</h6>
-                    <input type="text" id="image" name=icon style="display:none;" value="{{ user.icon }}"></p>
-                    <input id="my_file" type="file" class="d-none" />
-                    {% endif %}
+    <div class="profile-body">
+        <div class="row mt-3">
+            <form id="user_form" action="{{ url_for('user.update_user') }}" class="row col-md-12" method="POST">
+                <div class="col-md-6">
+                    <div class="text-center">
+                        <img id="avatar" src="{{ user.icon }}" class="avatar rounded-circle img-thumbnail" alt="avatar">
+                        {% if user.id == current_user.id %}
+                            <h6>Upload a different photo...</h6>
+                            <input type="text" id="image" name=icon style="display:none;" value="{{ user.icon }}"></p>
+                            <input id="my_file" type="file" class="d-none" />
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="profile">
-                    <h4 class="text-uppercase fw-weight-bold mb-2">レベル {{ user.level }}</h4>
-                    {% if user.id == current_user.id %}
-                    <input type="text" name=name class="form-control" value="{{ user.name }}">
-                    {% else %}
-                    <span>{{ user.name }}</span>
-                    {% endif %}
+                <div class="col-md-6">
+                    <div class="profile">
+                        <h4 class="text-uppercase fw-weight-bold mb-2">レベル {{ user.level }}</h4>
+                        {% if user.id == current_user.id %}
+                            <input type="text" name=name class="form-control" value="{{ user.name }}">
+                        {% else %}
+                            <span>{{ user.name }}</span>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
         <div class="hobby col-md-12">
             <div class="hobby-title">
