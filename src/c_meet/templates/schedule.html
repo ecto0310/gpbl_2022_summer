@@ -75,7 +75,7 @@
                         + first_date - prev_max_day}}</a>
                 </th>
             </div>
-            {%elif (today_year == year and today_month == month) and day >= num %}
+            {%elif (today_year == year and today_month == month) and day >= num + first_date - prev_max_day %}
             <div class="position-relative">
                 <th class="btn-secondary "> <a class="text-white  d-lg-block"
                         href="{{url_for('schedule.user_schedule',year_month = now,day =  num + first_date - prev_max_day)}}">{{num
