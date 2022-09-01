@@ -23,9 +23,6 @@ def search():
         view["amount"]= User_Hobby.query.filter(User_Hobby.hobby_id == hobby.id).count()
         view_hobbies.append(view)
 
-    print(type(view_hobbies))
-    # view_hobbies.sort(key=lambda x: x.amount, reverse=True)
-    
     
     return render_template("hobby.html", hobbies=view_hobbies, hobby=hobby_type)
 
